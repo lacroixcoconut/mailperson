@@ -1,0 +1,24 @@
+{
+  "name": "mailperson",
+  "version": "0.0.1",
+  "description": "Simple file emailing solution",
+  "main": "mailperson.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "email",
+    "privacy",
+    "distribution"
+  ],
+  "author": "Lacroix Coconut",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.5.2",
+    "koa": "^2.0.0-alpha.7",
+    "koa-bodyparser": "^3.2.0",
+    "koa-router": "^7.0.1",
+    "lodash": "^4.16.6",
+    "nodemailer": "^2.6.4"
+  }
+}
