@@ -11,13 +11,17 @@ module.exports = function(config){
     const Router = require('./lib/router')(EmailService, renderer);
     const router = new Router(config.routes);
 
-    if(config.middleware){
-        config.middleware.forEach(middleware => { app.use(middleware) } );
+    if(config.middleware && config.middleware.prepend){
+        config.middleware.prepend.forEach(middleware => { app.use(middleware) } );
     }
 
     app.use(router.routes())
        .use(router.allowedMethods());
 
+    if(config.middleware && config.middleware.append){
+        config.middleware.append.forEach(middleware => { app.use(middleware) } );
+    }
+    
     app.listen(config.port || 3000);
     
     return app;
