@@ -35,17 +35,24 @@ const config = {
 			}
 		}
 	},
-	middleware: [
-		(async function (ctx, next){
-			try{
-				await next();
-			} catch(e) {
-				console.error(e);
-				ctx.status = 500;
-				ctx.body = e.message;
-			}
-		})
-	],
+	middleware: {
+		prepend: [
+			(async function (ctx, next){
+				try{
+					await next();
+				} catch(e) {
+					console.error(e);
+					ctx.status = 500;
+					ctx.body = e.message;
+				}
+			})
+		],
+		append: [
+			(async function (ctx, next){
+				console.log("Request cycle completed.")
+			})
+		]
+	},
 	renderer: {
 		views_path: './views',
 		extension: 'tpl'
