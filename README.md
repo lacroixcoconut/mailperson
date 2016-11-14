@@ -14,15 +14,23 @@ Example:
 const mailperson = require('mailperson');
 const config = {
 	routes: {
-		'/test/1': {
-			subject: 'Test File 1',
-			filename: 'test1.txt',
-			path: '/dev/files/test1.txt'
+		'/test/1': { 
+			file: {
+				subject: 'Test File 1',
+				filename: 'test1.txt',
+				path: '/dev/files/test1.txt'
+			},
+			middleware: {
+				prepend: [],
+				append: []
+			}
 		},
 		'/test/remote': {
-			subject: 'Remote Test File',
-			filename: 'remote_test.jpg',
-			path: 'https://some.s3.url.com/bucket/remote_test.jpg'
+			file: {
+				subject: 'Remote Test File',
+				filename: 'remote_test.jpg',
+				path: 'https://some.s3.url.com/bucket/remote_test.jpg'
+			}
 		}
 	},
 	email_service: {
