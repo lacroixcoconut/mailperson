@@ -50,7 +50,7 @@ The configuration hash has the following options:
 
 ### Routes Object
 	
-The router configuration is an object where each key is a path to match, and each value is an object describing the mailer that will operate at that route.
+The router configuration is an object where each key is a path to match, and each value is an object describing the mailer that will operate at that route. Any URL safe path is valid, except `/`, unless the index path is disabled as detailed below.
 
 **key** Any URL valid path
 
@@ -74,10 +74,16 @@ The router configuration is an object where each key is a path to match, and eac
   	   - **append** Array
   	     An array of valid Koa2 middleware functions to append after any POST request to the route
 
+**Index Route**
+
+ By default, the router will generate an index page at `/`, unless the key `index` is explicitly set to `false` in the routes hash. This key can also be supplied with a configuration hash to set middleware, as described above.
+
 ## Views
 
-If you want to use custom views, you must supply three EJS template files, `form`, `email`, and `success`. The form template will be rendered on a GET request to any route, the email template is used to render the body of emails, and the success template is rendered after the email has been sent. Each template will be supplied with some data, listed below:
+If you want to use custom views, you must supply four EJS template files, `index`, `form`, `email`, and `success`. The form template will be rendered on a GET request to any route, the email template is used to render the body of emails, and the success template is rendered after the email has been sent. Each template will be supplied with some data, listed below:
 
+- **index.tpl**
+	- **routes** An array where each element is array of [route_path, filename]
 - **form.tpl**
 	- **path** The path of the current route. The form in this template should submit an input named `email` to this route
 	- **file** The `file` object from the current route's configuration hash
@@ -96,4 +102,3 @@ If you want to use custom views, you must supply three EJS template files, `form
 - Allow a layout to be passed in to render templates within
 - Allow for custom data injection in templates
 - Support per route templating
-- Provide index route
