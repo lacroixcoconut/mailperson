@@ -93,7 +93,7 @@ If you want to use custom views, you must supply three EJS template files, `form
 ## Todo
 
 - Make config simpler
-- Provide default templates
 - Allow a layout to be passed in to render templates within
 - Allow for custom data injection in templates
 - Support per route templating
+- Provide index route
