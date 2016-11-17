@@ -11,6 +11,8 @@ Mailperson uses ES7 async/await features, so applications using it must be run w
 ```javascript
 const mailperson = require('mailperson');
 const app = mailperson(config);
+
+app.listen(port);
 ```
 
 ## Configuration
@@ -37,8 +39,8 @@ The configuration hash has the following options:
       An array of valid Koa2 middleware functions to run after all routes
 -
   **renderer** Object
-  	- **views_path** String <'./views'>
-  	   The relative path from the project root to the views directory
+  	- **views_path** String .
+  	   The absolute path of your views directory. Default views are used if no directory is applied. See below for information on setting your own views
   	- **extension** String <'tpl'>
   	   The file extension to expect for template files
 -
@@ -74,7 +76,7 @@ The router configuration is an object where each key is a path to match, and eac
 
 ## Views
 
-You must supply three EJS template files, `form`, `email`, and `success`. The form template will be rendered on a GET request to any route, the email template is used to render the body of emails, and the success template is rendered after the email has been sent. Each template will be supplied with some data, listed below:
+If you want to use custom views, you must supply three EJS template files, `form`, `email`, and `success`. The form template will be rendered on a GET request to any route, the email template is used to render the body of emails, and the success template is rendered after the email has been sent. Each template will be supplied with some data, listed below:
 
 - **form.tpl**
 	- **path** The path of the current route. The form in this template should submit an input named `email` to this route
