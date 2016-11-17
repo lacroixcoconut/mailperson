@@ -21,8 +21,8 @@ module.exports = function(config){
     if(config.middleware && config.middleware.append){
         config.middleware.append.forEach(middleware => { app.use(middleware) } );
     }
-    
-    app.listen(config.port || 3000);
+
+    if(config.start) app.listen(config.port || 3000);
     
     return app;
 };
